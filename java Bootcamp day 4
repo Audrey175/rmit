@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class StringChecker {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      String inputString;
+
+          inputString = scnr.nextLine();
+
+        boolean noDuplicates = true;
+
+        if (inputString.length() == 2) {
+            char firstChar = inputString.charAt(0);
+            char secondChar = inputString.charAt(1);
+
+            if ((Character.isAlphabetic(firstChar) && Character.isAlphabetic(secondChar))
+                    && (Character.toLowerCase(firstChar) == Character.toLowerCase(secondChar))) {
+                noDuplicates = false;
+            } else if (firstChar == secondChar) {
+                noDuplicates = false;
+            }
+        }
+      if (noDuplicates) {
+         System.out.println("Good string");
+      }
+      else {
+         System.out.println("Bad string");
+      }
+   }
+}
