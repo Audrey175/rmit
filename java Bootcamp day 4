@@ -131,3 +131,76 @@ public class LabProgram {
         }
    }
 }
+
+
+A new game needs a 'league of champions' leader board to motivate and challenge users to play the game more often.
+The program will take a user's score and determine which league the player should be placed in.
+Input	A single input represents the game player's score.
+Constraints	You can assume the following:
+The user enters a single integer input.
+Program Logic	There are four leagues in the game.
+Each league has a minimum score and a maximum score that represents the range of scores that place a user in that league.
+ 	Bronze	Silver	Gold	Platinum
+Score Range	500 - 999	1000 - 1999	2000 - 2999	3000 +
+
+OUTPUT the league table
+PROMPT the user for a score.
+STORE the score.
+DETERMINE the league based on the score.
+OUTPUT a message indicating which league the player will be placed in based on their score.
+If the score is less that 500, output the message "You have not yet made it into a league"
+Output	Your program should output a summary table that shows the leagues and their score ranges.
+The columns in the table must be 14 characters wide.
+Example	Example Input:
+231000
+
+Example Output:
+ 	Bronze	Silver	Gold	Platinum
+Score Range	500 - 999	1000 - 1999	2000 - 2999	3000 +
+
+Please enter the user's score:
+Congratulations you have made it into the Platinum league!!!
+Note: You do not need to print out the borders of the table.
+
+
+import java.util.Formatter;
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        // Define the league table
+        String[] leagues = {"Bronze", "Silver", "Gold", "Platinum"};
+        int[] minScores = {500, 1000, 2000, 3000};
+        int[] maxScores = {999, 1999, 2999, Integer.MAX_VALUE};
+
+        // Print the league table
+        System.out.printf("%-14s%-14s%-14s%-14s%-14s%n", "", padString("Bronze", 14), padString("Silver", 14), padString("Gold", 14), padString("Platinum", 14));
+        System.out.printf("%-14s%-14s%-14s%-14s%-14s%n", "Score Range", padString("500 - 999", 14), padString("1000 - 1999", 14), padString("2000 - 2999", 14), padString("3000 +", 14));
+        System.out.println();
+        // Prompt the user for a score
+        Scanner scnr = new Scanner(System.in);
+        System.out.println("Please enter the user's score:");
+        int userScore = scnr.nextInt();
+
+        // Determine the league for the user's score
+        String userLeague = null;
+        for (int i = 0; i < leagues.length; i++) {
+            if (userScore >= minScores[i] && userScore <= maxScores[i]) {
+                userLeague = leagues[i];
+            }
+            else if (  userScore < 500) {
+               System.out.println("You have not yet made it into a league");
+               break;
+            }
+        }
+
+        // Output the user's league
+        System.out.println("Congratulations you have made it into the " + userLeague + "!!!");
+    }
+
+    private static String padString(String str, int width) {
+        Formatter fmt = new Formatter();
+        fmt.format("%1$-" + width + "s", str);
+        return fmt.toString();
+    }
+}
