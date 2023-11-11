@@ -204,3 +204,82 @@ public class ProgramSummary {
         return fmt.toString();
     }
 }
+
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+public class LabProgram {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for the number of elements to be paired
+       
+        int rangeNum = scanner.nextInt();
+
+        generateNumberPairs(rangeNum, scanner);
+    }
+
+    public static void generateNumberPairs(int rangeNum, Scanner scanner) {
+        // Create a collection to hold 2 of each number in the range
+        List<Integer> collection = new ArrayList<>();
+
+        // Populate the collection with all the numbers including duplicates in ascending order
+        for (int num = 1; num <= rangeNum; num++) {
+            collection.add(num);
+            collection.add(num);
+        }
+
+        // Print the table of numbers in the original order with a maximum of 5 numbers per row
+        System.out.println("Please enter the number of elements to be paired.");
+        System.out.println();
+        printTable(collection);
+
+        // Prompt the user for a seed number for testing purposes
+        System.out.println("Please enter a seed number for testing purposes.");
+        int seed = scanner.nextInt();
+
+        // Set counter to maximum index of collection to track how many numbers have not been used
+        int unusedNumbers = collection.size();
+
+        // Seed a randomizer for testing purposes
+        Random random = new Random(seed);
+
+        // Iterate over the collection until all numbers have been used
+        while (unusedNumbers > 0) {
+            // Retrieve a random number (to be used as an index for retrieving a value from the original collection)
+            int randomIndex = random.nextInt(collection.size());
+
+            // If the number has not been used before
+            if (collection.get(randomIndex) != 0) {
+                // Print the value (not the number)
+                System.out.printf("%4d", collection.get(randomIndex));
+
+                // Set the corresponding element in the original collection to zero to mark as used
+                collection.set(randomIndex, 0);
+
+                // If a new line is required
+                if (unusedNumbers % 5 == 0) {
+                    System.out.println();
+                }
+
+                // Decrement unusedNumbers
+                unusedNumbers--;
+            }
+        }
+    }
+
+    public static void printTable(List<Integer> collection) {
+        for (int i = 0; i < collection.size(); i++) {
+            System.out.printf("%4d", collection.get(i));
+            if ((i + 1) % 5 == 0) {
+                System.out.println();
+            }
+        }
+    }
+}
