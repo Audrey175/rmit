@@ -118,3 +118,41 @@ public class ArrayMethods {
       printArr(arrayToModify);
    }
 }
+
+// Ex: If the input is 5 81, then the output is:
+
+5 kiloliters yields 5000 liters.
+5 kiloliters and 81 liters yields 5081 liters.
+Note: The total number of liters can be found using (kiloliters * 1000) + liters.
+
+//
+import java.util.Scanner;
+
+public class VolumeConverter {
+   public static int convertVolume(int kiloliters) {
+      return kiloliters * 1000;
+   }
+
+   public static int convertVolume(int kilolitersUsed, int literUsed) {
+      
+     
+      return ( kilolitersUsed * 1000) + literUsed;
+   }
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      int kilolitersUsed;
+      int litersUsed;
+      int totalLiters1;
+      int totalLiters2;
+      
+      kilolitersUsed = scnr.nextInt();
+      litersUsed = scnr.nextInt();
+      
+      totalLiters1 = convertVolume(kilolitersUsed);
+      System.out.println(kilolitersUsed + " kiloliters yields " + totalLiters1 + " liters.");
+      
+      totalLiters2 = convertVolume(kilolitersUsed, litersUsed);
+      System.out.print(kilolitersUsed + " kiloliters and " + litersUsed + " liters yields ");
+      System.out.println(totalLiters2 + " liters.");
+   }
+}
