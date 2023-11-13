@@ -1,0 +1,120 @@
+//7.3.1
+import java.util.Scanner;
+
+public class CalcMiles {
+   public static double mphAndMinutesToMiles( double milesPerHour, double minutesTraveled) {
+      double hoursTraveled;
+      double milesTraveled;
+        hoursTraveled = minutesTraveled / 60.0;
+        milesTraveled = hoursTraveled * milesPerHour;
+      return  milesTraveled;
+   }
+
+   public static void main(String [] args) {
+      Scanner scnr = new Scanner(System.in);
+      double milesPerHour;
+      double minutesTraveled;
+
+      milesPerHour = scnr.nextDouble();
+      minutesTraveled = scnr.nextDouble();
+
+      System.out.println("Miles: " + mphAndMinutesToMiles(milesPerHour, minutesTraveled));
+   }
+}//
+// Five integers are read from input and stored into the array numberArray. Write a static method addIndexToElements() that takes an integer array parameter and replaces each element with the sum of the element and the element's index.
+
+Ex: If the input is 15 60 75 90 50, then the output is:
+
+Old array: 15 60 75 90 50 
+New array: 15 61 77 93 54 //
+import java.util.Scanner;
+
+public class ArrayMethods {
+
+   public static void addIndexToElements( int[] numberArray) {
+      int userNum;
+      userNum = numberArray[0];
+      numberArray[1] = numberArray[1] + 1;
+      numberArray[2] = numberArray[2] +2;
+      numberArray[3] = numberArray[3] + 3;
+      numberArray[4] = numberArray[4] + 4;
+   }
+   public static void printArr(int[] arr) {
+      int i;
+
+      for (i = 0; i < arr.length; ++i) {
+         System.out.print(arr[i] + " ");
+      }
+      System.out.println();
+   }
+
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      final int NUM_ELEM = 5;
+      int[] numberArray = new int[NUM_ELEM];
+      int i;
+      int userNum;
+
+      for (i = 0; i < numberArray.length; ++i) {
+         numberArray[i] = scnr.nextInt();
+      }
+
+      System.out.print("Old array: ");
+      printArr(numberArray);
+
+      addIndexToElements(numberArray);
+
+      System.out.print("New array: ");
+      printArr(numberArray);
+   }
+}
+
+
+import java.util.Scanner;
+
+public class ArrayMethods {
+
+   public static void modifyArray( int[] arrayToModify, int numCompare) {
+      int i;
+      int j;
+      for (i = 0; i < numCompare; i++) {
+        return -1;
+        for (j = i + 1; j <  numCompare; j++) {
+            if (arrayToModify[i] < arrayToModify[j]) {
+                return 1;
+                break;
+            }
+        }
+      }
+   }
+
+   public static void printArr(int[] arr) {
+      int i;
+
+      for (i = 0; i < arr.length; ++i) {
+         System.out.print(arr[i] + " ");
+      }
+      System.out.println();
+   }
+
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      final int NUM_ELEM = 5;
+      int[] arrayToModify = new int[NUM_ELEM];
+      int i;
+      int numCompare;
+
+      for (i = 0; i < arrayToModify.length; ++i) {
+         arrayToModify[i] = scnr.nextInt();
+      }
+      numCompare = scnr.nextInt();
+
+      System.out.print("Input: ");
+      printArr(arrayToModify);
+
+      modifyArray(arrayToModify, numCompare);
+
+      System.out.print("Output: ");
+      printArr(arrayToModify);
+   }
+}
