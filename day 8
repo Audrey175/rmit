@@ -1,0 +1,118 @@
+
+//Write a second constructor as indicated. Sample output:
+User1: Minutes: 0, Messages: 0
+User2: Minutes: 1000, Messages: 5000
+
+// ===== Code from file PhonePlan.java =====
+public class PhonePlan {
+   private int freeMinutes;
+   private int freeMessages;
+
+   public PhonePlan() {
+       freeMinutes  = 0;
+       freeMessages = 0;
+    }
+
+    // FIXME: Create a second constructor with numMinutes and numMessages parameters.
+  public PhonePlan(int numMinutes, int numMessages) {
+       freeMinutes = numMinutes;
+       freeMessages = numMessages;
+   }
+   
+
+   public void print() {
+      System.out.println("Minutes: " + freeMinutes + ", Messages: " + freeMessages);
+   }
+}
+// ===== end =====
+
+// ===== Code from file CallPhonePlan.java =====
+public class CallPhonePlan {
+   public static void main(String [] args) {
+      PhonePlan user1Plan = new PhonePlan(); // Calls default constructor
+      PhonePlan user2Plan = new PhonePlan(1000, 5000); // Calls newly-created constructor
+
+      System.out.print("User1: ");
+      user1Plan.print();
+
+      System.out.print("User2: ");
+      user2Plan.print();
+   }
+}
+// ===== end =====
+
+//Declare and initialize a reference variable for an ArrayList named widthList that stores items of type Integer. Read integer numWidths from input. Then, insert numWidths integers where each integer is equal to (3 * i) + 3, where i represents the integer's index into widthList, in that order.
+
+Ex: If the input is 2, then the output is:
+
+3 6 
+
+Note: Assume that numWidths is positive.
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class MakeWidthList {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      int numWidths;
+      int i;
+      /* Variable declarations go here */
+       ArrayList<Integer> widthList = new ArrayList<>();
+       numWidths = scnr.nextInt();
+       for ( i = 0; i < numWidths; i++) {
+            int width = (3 * i) + 3;
+            widthList.add(width);
+        }
+
+        
+      /* Your code goes here */
+      
+      // Traversing a list using indexes
+      for (i = 0; i < widthList.size(); ++i) {
+         System.out.print(widthList.get(i) + " ");
+      }
+      System.out.println();
+   }
+}
+
+
+//Use scnr to read each pair of inputs, string currTopic and integer currDuration, until "stop" is read from input. Create each Lesson object with currTopic and currDuration as arguments and append each object to ArrayList lessonList.
+
+Ex: If the input is Music 70 Finance 35 Travel 20 stop, then the output is:
+
+Lesson: Music, Duration: 70
+Lesson: Finance, Duration: 35
+Lesson: Travel, Duration: 20
+
+
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Lessons {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      ArrayList<Lesson> lessonList = new ArrayList<Lesson>();
+      Lesson currLesson;
+      String currTopic;
+		int currDuration;
+      int i;
+
+      while (true) {
+         currTopic = scnr.next();
+         if (currTopic.equals("stop")) {
+            break;
+         }
+         currDuration = scnr.nextInt();
+         Lesson lesson = new Lesson();
+         lesson.setTopicAndDuration(currTopic, currDuration);
+         lessonList.add(lesson);
+      }
+
+      for (i = 0; i < lessonList.size(); ++i) {
+         currLesson = lessonList.get(i);
+         currLesson.print();
+      }
+   }
+}
