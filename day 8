@@ -116,3 +116,137 @@ public class Lessons {
       }
    }
 }
+
+
+
+
+
+
+public class Suburb {
+    private String name;
+    private String city;
+    private String postcode;
+    private State state;
+
+    public Suburb(String name, String city, State state, String postcode) {
+        this.name = validateName(name);
+        this.city = validateCity(city);
+        this.postcode = validatePostcode(postcode);
+        this.state = validateState(state);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getPostCode() {
+        return postcode;
+    }
+
+    @Override
+    
+    public String toString() {
+        return name + ", " + city + ", " + state + ", " + postcode;
+    }
+
+    private String validateName(String name) {
+        if (name.length() < 1 || name.length() > 26) {
+            return "ERROR";
+        }
+        
+        return name;
+    }
+
+    private String validateCity(String city) {
+        if (city.length() < 1) {
+            return "ERROR";
+        }
+        return city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+    }
+
+    private String validatePostcode(String postcode) {
+        if (postcode.length() != 4 || !postcode.matches("\\d+")) {
+            return "ERROR";
+        }
+        return postcode;
+    }
+
+    private State validateState(State state) {
+        if (state == null) {
+            return State.ERROR;
+        }
+        
+
+
+    return state.toString();
+
+}
+    
+
+   
+}
+import java.util.Scanner;
+
+public class Salary {                         
+  public static void main(String [] args) { 
+      Scanner scnr = new Scanner(System.in);
+      int hourlyWage;
+      int weeklyHours;
+      int weeklySalary;
+      int overtimeHours;
+      final int WEEKLY_LIMIT = 40;
+   
+      System.out.println("Enter hourly wage: ");
+      hourlyWage = scnr.nextInt();
+
+      // FIXME: Get user input value for weeklyHours
+      weeklyHours = scnr.nextInt();
+
+      if (weeklyHours <= WEEKLY_LIMIT) {
+         weeklySalary = weeklyHours * hourlyWage;
+      }
+      else {
+         overtimeHours = weeklyHours - WEEKLY_LIMIT;
+         weeklySalary = (int)((hourlyWage * WEEKLY_LIMIT) +
+                              (hourlyWage * overtimeHours * 1.5));
+      }
+      System.out.print("Weekly salary is: " + weeklySalary);         
+  } 
+}
+
+
+import java.util.Scanner;
+
+public class IncomeTax {                         
+  public static void main(String [] args) { 
+      Scanner scnr = new Scanner(System.in);
+     int annualSalary;
+      double taxRate;
+      int taxToPay;
+    
+      System.out.println("Enter annual salary: ");
+      annualSalary = scnr.nextInt();
+
+      // Determine the tax rate from the annual salary
+      // FIXME: Write code to address the challenge question above
+      if (annualSalary <= 20000) {
+         taxRate = 0.10;
+      }
+      else if (annualSalary <= 50000) {
+         taxRate = 0.20;
+      }
+      // FIXME: Add tier
+      else {
+         taxRate = 0.30;
+      }
+
+      taxToPay = (int)(annualSalary * taxRate);     // Truncate tax to an integer amount
+      System.out.println("Annual Salary: " + annualSalary);
+      System.out.println("Tax rate: " + taxRate);
+      System.out.println("Tax to pay: " + taxToPay);
+   }
+}
