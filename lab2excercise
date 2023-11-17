@@ -1,0 +1,177 @@
+
+2.17 RMIT-2.1: Implement Algorithm (Distance Travelled)
+Example Input:
+4 3 2 1
+Note:
+4 * 1000000 = 4000000
+3 * 1000 = 3000
+2 * 10 = 20
+1 * 1 = 1
+4000000 + 3000 + 20 + 1 = 4003021
+
+Example Output:
+Please enter the amount of kilometres, metres, centimetres and millimetres.
+Total millimetres: 4003021
+import java.util.Scanner;
+
+public class LabProgram {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+      
+      int km;
+      int m;
+      int cm;
+      int mm;
+      int totalMillimentres;
+      km = scnr.nextInt();
+      m = scnr.nextInt();
+      cm = scnr.nextInt();
+      mm = scnr.nextInt();
+      totalMillimentres = ( km * 1000000) + ( m * 1000) + ( cm * 10) + (mm * 1);
+      System.out.println("Please enter kilometres, metres, centimetres, and millimetres on a single line:");
+      System.out.println("Total millimetres: " + totalMillimentres); 
+   }
+}
+
+2.18 RMIT-2.2: Incremental Development (Transform Input/Output)
+Example Input:
+S
+i
+m
+b
+a
+Simba
+
+Example Output:
+Prompt the user to input the first character:
+Prompt the user to input the second character:
+Prompt the user to input the third character:
+Prompt the user to input the fourth character:
+Prompt the user to input the fifth character:
+
+Answer:Simba
+
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+        char[] characters = new char[5];
+        String word;
+        
+        System.out.println("Prompt the user to input the first character:");
+        characters[0] = userInput.nextLine().charAt(0);
+        
+        System.out.println("Prompt the user to input the second character:");
+        characters[1] = userInput.nextLine().charAt(0);
+        
+        System.out.println("Prompt the user to input the third character:");
+        characters[2] = userInput.nextLine().charAt(0);
+        
+        System.out.println("Prompt the user to input the fourth character:");
+        characters[3] = userInput.nextLine().charAt(0);
+        
+        System.out.println("Prompt the user to input the fifth character:");
+        characters[4] = userInput.nextLine().charAt(0);
+        
+        word = new String(characters);
+        
+        System.out.println("\nAnswer:" + word);
+        
+        System.out.println("\nPlease enter a single word consisting of exactly five characters:");
+        String input = userInput.nextLine();
+        System.out.println("\nAnswer:");
+        for (int i = 0; i < input.length(); i++) {
+            System.out.println(input.charAt(i));
+        }
+        
+        userInput.close();
+    }
+}
+2.19 RMIT-2.3: Problem Solving
+Example Input:
+10 10 10 10
+
+Example Output:
+Please enter the room capacities for each of the four rooms:
+The total number of people that can be accommodated by these four rooms are: 40
+The average number of people that a room can accomodate is: 10.0
+Example Input:
+10 5 15 20
+
+Example Output:
+Please enter the room capacities for each of the four rooms:
+The total number of people that can be accommodated by these four rooms are: 50
+The average number of people that a room can accomodate is: 12.5
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Please enter the room capacities for each of the four rooms:");
+
+        String input = userInput.nextLine();
+        String[] capacities = input.split(" ");
+
+        int firstRoom = Integer.parseInt(capacities[0]);
+        int secondRoom = Integer.parseInt(capacities[1]);
+        int thirdRoom = Integer.parseInt(capacities[2]);
+        int fourthRoom = Integer.parseInt(capacities[3]);
+
+        int sum = firstRoom + secondRoom + thirdRoom + fourthRoom;
+        double average = sum / 4.0;
+
+        System.out.println("The total number of people that can be accommodated by these four rooms are: " + sum);
+        System.out.println("The average number of people that a room can accomodate is: " + average);
+
+        userInput.close();
+    }
+}
+
+2.20 RMIT-2.4: Research (Recipe Conversion)
+Sample program run
+Please input the name of your ingredient:
+Flour
+Please input the measurement in grams:
+375
+Please input the scale factor:
+3.2
+
+Sample output:
+Please input the name of your ingredient:
+Please input the measurement in grams:
+Please input the scale factor:
+Ingredient	Grams	Scale Factor	Cups
+Flour	375	3.2	4.8
+
+Note: the output in your program does not need to show the borders, just the output is spaced correctly into the specified column format.
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
+public class RecipeConversion {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please input the name of your ingredient:");
+        String ingredientName = scanner.nextLine();
+
+        System.out.println("Please input the measurement in grams:");
+        int grams = scanner.nextInt();
+        System.out.println("Please input the scale factor:" + "\n");
+        double scaleFactor = scanner.nextDouble();
+        
+      
+        double pricePerCup = 2.64;
+        double cups = ((double)(grams) / 250) * scaleFactor;
+        double cost = pricePerCup * cups;
+        System.out.println("Ingredient     Grams          Scale Factor   Cups");
+        System.out.printf("%-15s%-15d%-15.1f%-4.2f\n", ingredientName,grams,scaleFactor,cups);
+        
+        System.out.println();
+          System.out.printf("The cost of %.0f cups at $2.64 per cup is $%,.0f", cups, cost);
+
+      
+    }
+}
+
