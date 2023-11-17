@@ -28,6 +28,7 @@ public class StringChecker {
       }
    }
 }
+
 Day 1 outcome score:
 Temperature Weighted Score 14.5 = 2
 Rain Weighted Score 2 mm = 3
