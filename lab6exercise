@@ -1,0 +1,221 @@
+6.13
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+ 
+
+public class LabProgram {
+   public static void main(String[] args) {
+      Scanner scnr = new Scanner(System.in);
+
+      // Prompting input values
+      System.out.println("Please enter the number of elements to be paired.\n");
+      int numPairs = scnr.nextInt();
+
+
+      // Array list to store the pairs
+      ArrayList <Integer> numbers = new ArrayList<>();
+      for (int i = 1; i <= numPairs; i++) {
+         numbers.add(i);
+         numbers.add(i);
+      }
+
+
+      // Output the first table 
+      int count = 0;
+      for (int number : numbers) {
+         System.out.printf("%4d", number);
+         count++;
+         if (count % 5 == 0) {
+            System.out.println();
+         }
+      }
+
+      System.out.println();
+
+      // Randomisation using seed input value
+      System.out.println("Please enter a seed number for testing purposes.\n");
+      int seedNum = scnr.nextInt();
+      Random rnd = new Random();
+      rnd.setSeed(seedNum);
+
+
+      // Set counter to the maximum index
+      int counter = 0;
+      int unusedNums = numPairs * 2;
+
+
+      count = 0;
+      // Iterate until unusedNums are all used up
+      while (unusedNums > 0) {
+         // Retrieve a random number
+         int index = rnd.nextInt(numbers.size());
+         // Get the number using the random number index
+         int number = numbers.get(index);
+         // Check if the number hasn't been used 
+         if (number != 0) { 
+            System.out.printf("%4d", number);
+            // Set the value to 0 to mark as used
+            numbers.set(index, 0);
+            count++;
+            // printing new line for every 5 values
+            if (count % 5 == 0) {
+               System.out.println();
+               count = 0;
+            }
+            unusedNums--;
+         }
+
+      }
+   }
+}
+
+
+6.14 RMIT-6.3: Problem Solving
+public class ProgramSummary {
+    public static void main(String[] args) {
+        final int[][] timesTable = new int[12][12];
+
+        for (int i = 0; i < 12; i++) {
+            int[] row = new int[12];
+            for (int j = 0; j < 12; j++) {
+                row[j] = (i + 1) * (j + 1);
+            }
+            timesTable[i] = row;
+            
+        }
+
+        // Pattern 1: Multiplication Table
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                System.out.printf("%4d", timesTable[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Pattern 2: Lower Triangular Matrix
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.printf("%4d", timesTable[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Pattern 3: Upper Triangular Matrix
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < timesTable.length - i; j++) {
+               System.out.printf("%4d", timesTable[j][i]);
+            }
+            System.out.println();
+         }
+
+        System.out.println();
+
+        // Pattern 4: Upper Triangular Matrix (Reverse)
+        for (int i = 0; i < 12; i++) {
+            for (int j = 12; j > i; j--) {
+                System.out.printf("%4d", timesTable[i][j - 1]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        // Pattern 5: Lower Triangular Matrix (Reverse
+        
+         for (int i = 0; i <= 12; i++) {
+            for (int j = 11; j >= 11 - i; j--) {
+               System.out.printf("%4d", timesTable[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+
+6.15 RMIT-6.4: Research (Guess Me)
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+        String secretWord = "enjoy";
+        String guessWord;
+        char[] charOfSecretWord;
+        char[] charOfGuessWord;
+        String rightWord = "";
+        int i;
+        int j;
+        int k;
+        int difference;
+        int maxDifference = 0;
+
+        System.out.println("Please enter your first attempt.");
+        guessWord = scnr.nextLine();
+
+         charOfGuessWord = guessWord.toCharArray();
+         charOfSecretWord = secretWord.toCharArray();
+
+        for (int m = 0; m < 6; ++m) {
+            if (!(guessWord.equals(secretWord)) && (m < 5)) {
+                System.out.println(guessWord);
+            } else if (!(guessWord.equals(secretWord)) && (m == 5)) {
+                System.out.println();
+            }
+
+            rightWord = "";
+
+            for (i = 0; i < charOfGuessWord.length; ++i) {
+                for (j = 0; j < charOfSecretWord.length; ++j) {
+                    if (charOfGuessWord[i] == charOfSecretWord[i]) {
+                        charOfGuessWord[i] = charOfSecretWord[i];
+                        rightWord = rightWord + charOfGuessWord[i];
+                    } else if ((charOfGuessWord[i] != charOfSecretWord[i]) && (secretWord.contains(String.valueOf(charOfGuessWord[i])))) {
+                        rightWord = rightWord + "(" + charOfGuessWord[i] + ")";
+
+                        difference = Math.abs(guessWord.charAt(i) - (secretWord.charAt(i)));
+
+                        if (difference >= maxDifference) {
+                            maxDifference = difference;
+                        }
+                    } else {
+                        charOfGuessWord[i] = 'X';
+                        rightWord = rightWord + charOfGuessWord[i];
+                    }
+
+                    break;
+                }
+            }
+
+            if (rightWord.equals(secretWord)) {
+                System.out.println(secretWord);
+                System.out.println("Congratulations, you found the word.");
+                break;
+            } else if ((m <= 4) && (!rightWord.equals(secretWord))) {
+                System.out.println(rightWord);
+            } else {
+                System.out.println("Better luck next time");
+                break;
+            }
+
+            if (maxDifference > 0) {
+                System.out.println("One of your letters is " + maxDifference + " characters away");
+                maxDifference = 0; 
+            }
+
+            if (rightWord.equals(secretWord)) {
+                break;
+            } else {
+                System.out.println();
+                System.out.println("Please try again: ");
+
+                guessWord = scnr.nextLine();
+                charOfGuessWord = guessWord.toCharArray();
+            }
+        }
+    }
+}
