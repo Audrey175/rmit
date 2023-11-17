@@ -1,0 +1,91 @@
+Example Input:
+Establish a learning community.
+Complete reading and labs for the first three days of the course.
+Participate in at least 3 code reviews with your peers (fellow students).
+
+Example Output:
+Please enter the first goal and press the enter key.
+Please enter the second goal and press the enter key.
+Please enter the third goal and press the enter key.
+
+1. Establish a learning community.
+2. Complete reading and labs for the first three days of the course.
+3. Participate in at least 3 code reviews with your peers (fellow students).
+
+3. Participate in at least 3 code reviews with your peers (fellow students).
+2. Complete reading and labs for the first three days of the course.
+1. Establish a learning community.
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter the first goal and press the enter key.");
+        String firstGoal = scanner.nextLine();
+
+        System.out.println("Please enter the second goal and press the enter key.");
+        String secondGoal = scanner.nextLine();
+
+        System.out.println("Please enter the third goal and press the enter key.");
+        String thirdGoal = scanner.nextLine();
+
+        System.out.println();
+        printGoalWithNumber(1, firstGoal);
+        printGoalWithNumber(2, secondGoal);
+        printGoalWithNumber(3, thirdGoal);
+
+        System.out.println();
+        printGoalWithNumber(3, thirdGoal);
+        printGoalWithNumber(2, secondGoal);
+        printGoalWithNumber(1, firstGoal);
+
+        scanner.close();
+    }
+
+    private static void printGoalWithNumber(int number, String goal) {
+        System.out.println(number + ". " + goal);
+    }
+}
+
+Example Input:
+Henry 10000 2.0
+
+Example Output:
+Please enter your first name only, the balance of your savings account, and the annual interest paid on your savings account.
+
+Opening Balance: $10000.0
+First Year: $10200.0
+Second Year: $10404.0
+Third Year: $10612.08
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+        String name;
+        double balance, interest;
+        
+        System.out.println("Please enter your first name only, the balance of your savings account, and the annual interest paid on your savings account.");
+        String input = userInput.nextLine();
+        String[] inputs = input.split(" ");
+        
+        name = inputs[0];
+        balance = Double.parseDouble(inputs[1]);
+        interest = Double.parseDouble(inputs[2]);
+        
+        System.out.println();
+        System.out.println("Opening Balance: $" + balance);
+        
+        balance = balance + (balance * interest / 100);
+        System.out.println("First Year: $" + balance);
+        
+        balance = balance + (balance * interest / 100);
+        System.out.println("Second Year: $" + balance);
+        
+        balance = balance + (balance * interest / 100);
+        System.out.println("Third Year: $" + balance);
+        
+        userInput.close();
+    }
+}
