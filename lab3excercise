@@ -1,0 +1,156 @@
+
+3.14 RMIT-3.2: Incremental Development (Charity Food Orders)
+Example Input:
+10
+3
+10.5
+0.5
+
+Example Output:
+Number of people:
+Number of meals per person:
+Cost per bag of rice:
+
+This order will support 10 people to each make 3 rice based meals.
+Total meals: 30
+You will need 3 bags of rice for a cost of $31.50.
+
+Please input the expected percentage of late orders:
+
+Allowing for late orders, you should order: 4 bags of rice for a cost of $42.00.
+
+
+import java.util.Scanner;
+
+public class ProgramSummary{
+    public static void main(String[] args){
+       Scanner userInput = new Scanner(System.in);
+       
+        System.out.println("Number of people:");
+        int numOfPeople = userInput.nextInt();
+        
+        System.out.println("Number of meals per person:");
+        int mealsPerPerson = userInput.nextInt();
+        
+        System.out.println("Cost per bag of rice:");
+        double costPerBag = userInput.nextDouble();
+        
+        System.out.println();
+        
+      
+       int totalMeals = numOfPeople * mealsPerPerson;
+       int cupOfRice = totalMeals;
+       int bagOfRice = (int) Math.ceil(cupOfRice / 12.0);
+       double totalCost = bagOfRice * costPerBag;
+       
+       System.out.println("This order will support " + numOfPeople + " people to each make " + mealsPerPerson + " rice based meals.");
+       System.out.println("Total meals: " + totalMeals);
+       System.out.printf("You will need %d bags of rice for a cost of $%.2f.%n",bagOfRice, totalCost);
+       System.out.println();
+        System.out.println("Please input the expected percentage of late orders:");
+        double lateOrderPercentage = userInput.nextDouble();
+
+        int extraBagsOfRice = (int) Math.ceil(bagOfRice * (1 + lateOrderPercentage));
+        double extraCost = extraBagsOfRice * costPerBag;
+
+        System.out.println();
+        System.out.printf("Allowing for late orders, you should order: %d bags of rice for a cost of $%.2f." ,extraBagsOfRice, extraCost);  
+    }
+}
+
+3.15 RMIT-3.3: Problem Solving
+Example Input:
+61393278888
+0427312746
+
+Example Output:
+Please enter the landline phone number:
+Please enter the mobile phone number:
+Your landline number is: +613 9327 8888
+Your mobile number is: 0427 312 746
+import java.util.Scanner;
+
+public class ProgramSummary {
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.println("Please enter the landline phone number:");
+        String landlineNumber = userInput.nextLine();
+
+        System.out.println("Please enter the mobile phone number:");
+        String mobileNumber = userInput.nextLine();
+         System.out.println();
+        String formattedLandline = formatLandlineNumber(landlineNumber);
+        String formattedMobile = formatMobileNumber(mobileNumber);
+
+        System.out.println("Your landline number is: " + formattedLandline);
+        System.out.println("Your mobile number is: " + formattedMobile);
+
+        userInput.close();
+    }
+
+    private static String formatLandlineNumber(String number) {
+        String formattedNumber = "+6" + number.substring(1, 3) + " " + number.substring(3, 7) + " " + number.substring(7);
+        return formattedNumber;
+    }
+
+    private static String formatMobileNumber(String number) {
+        String formattedNumber = number.substring(0, 4) + " " + number.substring(4, 7) + " " + number.substring(7);
+        return formattedNumber;
+    }
+}
+3.16 RMIT-3.4: Research (Perfect square)
+
+Please input your first decimal value:
+16
+Please input your second decimal value:
+16.49
+Please input your third decimal value:
+16.51
+
+Result:
+Input	Square Root as Integer	Perfect Square
+16.00	4	true
+16.49	4	false
+16.51	4	false
+
+import java.util.Scanner;
+
+public class PerfectSquare {
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+
+        // Prompt the user to input three decimal values
+        System.out.println("Please input your first decimal value:");
+        double value1 = scnr.nextDouble();
+
+        System.out.println("Please input your second decimal value:");
+        double value2 = scnr.nextDouble();
+
+        System.out.println("Please input your third decimal value:");
+        double value3 = scnr.nextDouble();
+        System.out.println();
+        scnr.close();
+
+        // Output the headings
+        System.out.printf("%-10s%-30s%-20s%n", "Input", "Square Root as Integer", "Perfect Square");
+
+        
+        processAndOutputSummary(value1);
+
+        
+        processAndOutputSummary(value2);
+
+        
+        processAndOutputSummary(value3);
+    }
+
+    public static void processAndOutputSummary(double value) {
+        double squareRoot = Math.sqrt(value);
+        int squareRootInt = (int) squareRoot;
+        boolean isPerfectSquare = squareRootInt * squareRootInt == value;
+
+      
+        System.out.printf("%-10.2f%-30d%-20b%n", value, squareRootInt, isPerfectSquare);
+    }
+}
