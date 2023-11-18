@@ -1,0 +1,105 @@
+SuburbTest.java
+public class SuburbTest {
+    public static void main(String[] args) {
+        Suburb suburb1 = new Suburb("Carlton North", "Melbourne", State.VICTORIA, "3054");
+        System.out.println(suburb1.toString());
+
+       
+    }
+}
+Subrb.java
+public class Suburb {
+    private String name;
+    private String city;
+    private String postcode;
+    private State state;
+
+    public Suburb(String name, String city, State state, String postcode) {
+        this.name = validateName(name);
+        this.city = validateCity(city);
+        this.postcode = validatePostcode(postcode);
+        this.state = validateState(state);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getPostCode() {
+        return postcode;
+    }
+
+    @Override
+    
+    public String toString() {
+        return name + ":" + city + ":" + toTitleCase(state.name().toLowerCase()) + ":" + postcode;
+    }
+private String toTitleCase(String input) {
+    StringBuilder titleCase = new StringBuilder();
+    boolean nextTitleCase = true;
+
+    for (char c : input.toCharArray()) {
+        if (c == '_') {
+            titleCase.append(' ');
+            nextTitleCase = true;
+        } else if (Character.isSpaceChar(c)) {
+            nextTitleCase = true;
+        } else if (nextTitleCase) {
+            c = Character.toTitleCase(c);
+            nextTitleCase = false;
+        } else {
+            c = Character.toLowerCase(c);
+        }
+
+        titleCase.append(c);
+    }
+
+    return titleCase.toString();
+
+}
+    private String validateName(String name) {
+        if (name.length() < 1 || name.length() > 26) {
+            return "ERROR";
+        }
+        
+        return name;
+    }
+
+    private String validateCity(String city) {
+        if (city.length() < 1) {
+            return "ERROR";
+        }
+        return city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+    }
+
+    private String validatePostcode(String postcode) {
+        if (postcode.length() != 4 || !postcode.matches("\\d+")) {
+            return "ERROR";
+        }
+        return postcode;
+    }
+
+    private State validateState(State state) {
+        if (state == null) {
+            return State.ERROR;
+        }
+        return state;
+    }
+       
+}
+State.java
+ public enum State {
+        NEW_SOUTH_WALES,
+        AUSTRALIAN_CAPITAL_TERRITORY,
+        VICTORIA,
+        QUEENSLAND,
+        SOUTH_AUSTRALIA,
+        WESTERN_AUSTRALIA,
+        TASMANIA,
+        NORTHERN_TERRITORY,
+        ERROR
+ }
